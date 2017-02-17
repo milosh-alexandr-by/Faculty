@@ -34,13 +34,13 @@ public class UserDaoImpl implements UserDao {
         Session session = currentSession();
         Transaction tr = session.beginTransaction();
 
-        Set<Role> roles = new HashSet<Role>();
-        Criteria criteria = session.createCriteria(Role.class);
-        criteria.add(Restrictions.eq("roleName", "ROLE_USER"));
-        Role role = (Role) criteria.uniqueResult();
-        roles.add(role);
-
-        user.setRoles(roles);
+//        Set<Role> roles = new HashSet<Role>();
+//        Criteria criteria = session.createCriteria(Role.class);
+//        criteria.add(Restrictions.eq("roleName", "ROLE_USER"));
+//        Role role = (Role) criteria.uniqueResult();
+//        roles.add(role);
+//
+//        user.setRoles(roles);
 
         session.save(user);
         tr.commit();
