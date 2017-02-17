@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+             http://www.springframework.org/schema/security
+             http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <beans:import resource="dataSource.xml"/>
+
+    <http use-expressions="true">
+        <access-denied-handler error-page="/accessDenied" />
+        <intercept-url pattern="/login" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/enter" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+        <form-login
+                login-page="/loginCustomForm"
+                default-target-url="/"
+                authentication-failure-url="/loginCustomForm?error=true"
+                username-parameter="user_login"
+                password-parameter="password_login" />
+        <logout logout-success-url="/" />
+        <remember-me />
+    </http>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="authService" />
+    </authentication-manager>
+
+    <beans:bean id="authService" class="by.it.milosh.authentication.AuthenticationService"/>
+
+
+</beans:beans>
