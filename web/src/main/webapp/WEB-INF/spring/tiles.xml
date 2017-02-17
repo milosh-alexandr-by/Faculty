@@ -13,4 +13,12 @@
         <put-attribute name="title" value="main"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/main.jsp"/>
     </definition>
+    <definition name="pages/admin/adminMain" extends="default">
+        <put-attribute name="title" value="admin main"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/admin/adminMain.jsp"/>
+    </definition>
+    <definition name="pages/loginCustomForm" extends="default">
+        <put-attribute name="title" value="login custom form"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/loginCustomForm.jsp"/>
+    </definition>
 </tiles-definitions>
