@@ -37,8 +37,8 @@ public class AuthenticationService implements UserDetailsService {
                 getGrantedAuthorities(user));
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities(User user) {
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    private List<SimpleGrantedAuthority> getGrantedAuthorities(User user) {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 
         for (Role role : user.getRoles()) {
             System.out.println("Role : " + role);

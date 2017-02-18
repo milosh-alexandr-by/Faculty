@@ -1,8 +1,7 @@
 package by.it.milosh.pojos;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by USER on 17.02.2017.
@@ -31,7 +30,7 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private Set<Role> roles = new HashSet<Role>();
+    private List<Role> roles = new ArrayList<Role>();
 
     @OneToMany(mappedBy = "user")
     private Set<UserCourse> studentCourse = new HashSet<UserCourse>();
@@ -39,7 +38,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, Set<Role> roles, Set<UserCourse> studentCourse) {
+    public User(String username, String password, String firstName, String lastName, List<Role> roles, Set<UserCourse> studentCourse) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -88,11 +87,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

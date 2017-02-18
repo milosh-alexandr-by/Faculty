@@ -5,7 +5,7 @@
 <c:choose>
     <c:when test="${pageContext.request.userPrincipal.name != null}">
         ${pageContext.request.userPrincipal.name}
-        <a href="/j_spring_security_logout">Logout</a><a href="/personal">Ваши данные</a>
+        <a href="/j_spring_security_logout">Logout</a>
     </c:when>
     <c:otherwise>
         <a href="/enter">Вход</a>

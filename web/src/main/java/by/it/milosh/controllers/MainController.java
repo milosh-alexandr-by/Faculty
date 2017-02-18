@@ -6,6 +6,8 @@ import by.it.milosh.service.RoleService;
 import by.it.milosh.service.SecurityService;
 import by.it.milosh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +37,18 @@ public class MainController {
 
     @Autowired
     private SecurityService securityService;
+
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        }
+        else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
@@ -88,13 +104,28 @@ public class MainController {
         } else if (whoIs.equals("teacher")) {
             role = roleService.findRoleByName("ROLE_TEACHER");
         }
-        Set<Role> roles = new HashSet<Role>();
+        List<Role> roles = new ArrayList<Role>();
         roles.add(role);
         user.setRoles(roles);
         userService.addUser(user);
         securityService.autoLogin(user.getUsername(), user.getPassword());
         return "redirect:/";
-
     }
+
+    @RequestMapping(value = "/personal", method = RequestMethod.GET)
+    public ModelAndView personal() {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userService.findUserByName(getPrincipal());
+        List<Role> roles = user.getRoles();
+        Role role = roles.get(0);
+        String roleName = role.getRoleName();
+        if (roleName.equals("ROLE_STUDENT")) {
+            modelAndView.setViewName("pages/student/personal");
+        } else if (roleName.equals("ROLE_TEACHER")) {
+            modelAndView.setViewName("pages/teacher/personal");
+        }
+        return modelAndView;
+    }
+
 
 }
