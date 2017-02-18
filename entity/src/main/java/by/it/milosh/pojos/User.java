@@ -27,10 +27,9 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
-    @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private List<Role> roles = new ArrayList<Role>();
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @OneToMany(mappedBy = "user")
     private Set<UserCourse> studentCourse = new HashSet<UserCourse>();
@@ -38,12 +37,12 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, List<Role> roles, Set<UserCourse> studentCourse) {
+    public User(String username, String password, String firstName, String lastName, Role role, Set<UserCourse> studentCourse) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.roles = roles;
+        this.role = role;
         this.studentCourse = studentCourse;
     }
 
@@ -87,12 +86,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Set<UserCourse> getStudentCourse() {

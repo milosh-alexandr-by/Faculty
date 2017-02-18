@@ -36,4 +36,20 @@
         <put-attribute name="header" value="/WEB-INF/views/pages/teacher/personalHeader.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/teacher/personal.jsp"/>
     </definition>
+    <!-- Admin tiles -->
+    <definition name="pages/admin/allCourses" extends="default">
+        <put-attribute name="title" value="admin all courses"/>
+        <put-attribute name="header" value=""/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/admin/allCourses.jsp"/>
+    </definition>
+    <definition name="pages/admin/allStudents" extends="default">
+        <put-attribute name="title" value="admin all students"/>
+        <put-attribute name="header" value=""/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/admin/allStudents.jsp"/>
+    </definition>
+    <definition name="pages/admin/allTeachers" extends="default">
+        <put-attribute name="title" value="admin all teachers"/>
+        <put-attribute name="header" value=""/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/admin/allTeachers.jsp"/>
+    </definition>
 </tiles-definitions>

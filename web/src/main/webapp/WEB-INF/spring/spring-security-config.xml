@@ -12,7 +12,7 @@
     <http use-expressions="true">
         <access-denied-handler error-page="/accessDenied" />
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/enter" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+        <intercept-url pattern="/enter" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_STUDENT') or hasRole('ROLE_TEACHER')" />
         <form-login
                 login-page="/loginCustomForm"
                 default-target-url="/"

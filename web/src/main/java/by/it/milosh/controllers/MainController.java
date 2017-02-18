@@ -57,6 +57,13 @@ public class MainController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/enter", method = RequestMethod.GET)
+    public ModelAndView enter() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("pages/main");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin() {
         return "pages/admin/adminMain";
@@ -104,9 +111,7 @@ public class MainController {
         } else if (whoIs.equals("teacher")) {
             role = roleService.findRoleByName("ROLE_TEACHER");
         }
-        List<Role> roles = new ArrayList<Role>();
-        roles.add(role);
-        user.setRoles(roles);
+        user.setRole(role);
         userService.addUser(user);
         securityService.autoLogin(user.getUsername(), user.getPassword());
         return "redirect:/";
@@ -116,8 +121,7 @@ public class MainController {
     public ModelAndView personal() {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.findUserByName(getPrincipal());
-        List<Role> roles = user.getRoles();
-        Role role = roles.get(0);
+        Role role = user.getRole();
         String roleName = role.getRoleName();
         if (roleName.equals("ROLE_STUDENT")) {
             modelAndView.setViewName("pages/student/personal");

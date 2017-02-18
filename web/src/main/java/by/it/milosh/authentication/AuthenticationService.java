@@ -40,10 +40,15 @@ public class AuthenticationService implements UserDetailsService {
     private List<SimpleGrantedAuthority> getGrantedAuthorities(User user) {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 
+        Role role = user.getRole();
+        authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+
+        /* Было до того, как я сделал юзеры и роли многие к одному
         for (Role role : user.getRoles()) {
             System.out.println("Role : " + role);
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         }
+        */
         System.out.print("authorities :" + authorities);
         return authorities;
 

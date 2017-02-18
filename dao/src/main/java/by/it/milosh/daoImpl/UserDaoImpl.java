@@ -69,4 +69,16 @@ public class UserDaoImpl implements UserDao {
         tr.commit();
         return users;
     }
+
+    @Override
+    public List<User> getAllUserByRole(String roleName) {
+        Session session = currentSession();
+        Transaction tr = session.beginTransaction();
+        String hql = "from User u where u.role.roleName=:roleName";
+        Query query = session.createQuery(hql);
+        query.setParameter("roleName", roleName);
+        List<User> users = query.list();
+        tr.commit();
+        return users;
+    }
 }
