@@ -21,4 +21,9 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getAllCourse() {
         return courseDao.getAllCourses();
     }
+
+    @Override
+    public void addCourse(Course course) {
+        courseDao.addCourse(course);
+    }
 }

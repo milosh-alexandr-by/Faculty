@@ -21,3 +21,8 @@
     </c:forEach>
 </table>
 <hr/>
+<p><b>Добавить курс</b></p><br/>
+<form name="addCourse" method="get" action="/admin/addCourse">
+    Название курса: <input type="text" name="title" value=""><br/><br/>
+    <input type="submit" value="Добавить">
+</form>

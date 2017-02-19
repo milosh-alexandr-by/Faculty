@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -62,6 +63,18 @@ public class AdminController {
         List<UserCourse> userCourses = userCourseService.getAllUserCourse();
         modelAndView.addObject("userCourses", userCourses);
         modelAndView.setViewName("pages/admin/allUserCourses");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/addCourse", method = RequestMethod.GET)
+    public ModelAndView addService(@RequestParam String title) {
+        ModelAndView modelAndView = new ModelAndView();
+        Course course = new Course();
+        course.setCourseName(title);
+        courseService.addCourse(course);
+        List<Course> courses = courseService.getAllCourse();
+        modelAndView.addObject("courses", courses);
+        modelAndView.setViewName("pages/admin/allCourses");
         return modelAndView;
     }
 

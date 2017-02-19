@@ -38,4 +38,12 @@ public class CourseDaoImpl implements CourseDao {
         tr.commit();
         return courses;
     }
+
+    @Override
+    public void addCourse(Course course) {
+        Session session = currentSession();
+        Transaction tr = session.beginTransaction();
+        session.saveOrUpdate(course);
+        tr.commit();
+    }
 }

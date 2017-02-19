@@ -11,4 +11,6 @@ public interface CourseDao {
 
     List<Course> getAllCourses();
 
+    void addCourse(Course course);
+
 }

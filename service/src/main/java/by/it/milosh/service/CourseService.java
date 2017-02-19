@@ -11,4 +11,6 @@ public interface CourseService {
 
     List<Course> getAllCourse();
 
+    void addCourse(Course course);
+
 }
