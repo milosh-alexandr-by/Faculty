@@ -52,4 +52,9 @@
         <put-attribute name="header" value=""/>
         <put-attribute name="body" value="/WEB-INF/views/pages/admin/allTeachers.jsp"/>
     </definition>
+    <definition name="pages/admin/allUserCourses" extends="default">
+        <put-attribute name="title" value="admin all user-courses"/>
+        <put-attribute name="header" value=""/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/admin/allUserCourses.jsp"/>
+    </definition>
 </tiles-definitions>

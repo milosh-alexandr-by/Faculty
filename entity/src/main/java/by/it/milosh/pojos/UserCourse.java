@@ -25,4 +25,44 @@ public class UserCourse {
     @Column(name = "rating")
     private Integer rating;
 
+    public UserCourse() {
+    }
+
+    public UserCourse(User user, Course course, Integer rating) {
+        this.user = user;
+        this.course = course;
+        this.rating = rating;
+    }
+
+    public Long getUser_course_id() {
+        return user_course_id;
+    }
+
+    public void setUser_course_id(Long user_course_id) {
+        this.user_course_id = user_course_id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 }

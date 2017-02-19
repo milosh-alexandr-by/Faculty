@@ -5,4 +5,5 @@
 <p><a href="/admin/allCourses">Список всех курсов</a></p>
 <p><a href="/admin/allStudents">Список всех студентов</a></p>
 <p><a href="/admin/allTeachers">Список всех преподавателей</a></p>
+<p><a href="/admin/allUserCourses">Список все юзер-курсы</a></p>
 <hr/>

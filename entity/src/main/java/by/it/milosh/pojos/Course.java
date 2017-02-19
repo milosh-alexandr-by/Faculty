@@ -1,7 +1,9 @@
 package by.it.milosh.pojos;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,14 +22,14 @@ public class Course {
     private String courseName;
 
     @OneToMany(mappedBy = "course")
-    private Set<UserCourse> studentCourse = new HashSet<UserCourse>();
+    private List<UserCourse> userCourse = new ArrayList<UserCourse>();
 
     public Course() {
     }
 
-    public Course(String courseName, Set<UserCourse> studentCourse) {
+    public Course(String courseName, List<UserCourse> userCourse) {
         this.courseName = courseName;
-        this.studentCourse = studentCourse;
+        this.userCourse = userCourse;
     }
 
     public Long getCourse_id() {
@@ -46,11 +48,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public Set<UserCourse> getStudentCourse() {
-        return studentCourse;
+    public List<UserCourse> getUserCourse() {
+        return userCourse;
     }
 
-    public void setStudentCourse(Set<UserCourse> studentCourse) {
-        this.studentCourse = studentCourse;
+    public void setUserCourse(List<UserCourse> userCourse) {
+        this.userCourse = userCourse;
     }
 }

@@ -32,18 +32,18 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user")
-    private Set<UserCourse> studentCourse = new HashSet<UserCourse>();
+    private List<UserCourse> userCourse = new ArrayList<UserCourse>();
 
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, Role role, Set<UserCourse> studentCourse) {
+    public User(String username, String password, String firstName, String lastName, Role role, List<UserCourse> userCourse) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
-        this.studentCourse = studentCourse;
+        this.userCourse = userCourse;
     }
 
     public Long getUser_id() {
@@ -94,11 +94,11 @@ public class User {
         this.role = role;
     }
 
-    public Set<UserCourse> getStudentCourse() {
-        return studentCourse;
+    public List<UserCourse> getUserCourse() {
+        return userCourse;
     }
 
-    public void setStudentCourse(Set<UserCourse> studentCourse) {
-        this.studentCourse = studentCourse;
+    public void setUserCourse(List<UserCourse> userCourse) {
+        this.userCourse = userCourse;
     }
 }
