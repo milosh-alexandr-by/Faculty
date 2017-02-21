@@ -2,8 +2,10 @@ package by.it.milosh.controllers;
 
 import by.it.milosh.pojos.Role;
 import by.it.milosh.pojos.User;
+import by.it.milosh.pojos.UserCourse;
 import by.it.milosh.service.RoleService;
 import by.it.milosh.service.SecurityService;
+import by.it.milosh.service.UserCourseService;
 import by.it.milosh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,6 +39,9 @@ public class MainController {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private UserCourseService userCourseService;
 
     private String getPrincipal() {
         String userName = null;
@@ -128,6 +133,10 @@ public class MainController {
         } else if (roleName.equals("ROLE_TEACHER")) {
             modelAndView.setViewName("pages/teacher/personal");
         }
+        Long user_id = user.getUser_id();
+        List<UserCourse> userCourses = userCourseService.getAllUserCourseByUserId(user_id);
+        System.out.println(userCourses);
+        modelAndView.addObject("userCourses", userCourses);
         return modelAndView;
     }
 

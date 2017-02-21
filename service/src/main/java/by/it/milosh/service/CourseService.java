@@ -13,4 +13,6 @@ public interface CourseService {
 
     void addCourse(Course course);
 
+    Course findCourseByName(String courseName);
+
 }

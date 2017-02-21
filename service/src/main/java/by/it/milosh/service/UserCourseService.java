@@ -1,5 +1,7 @@
 package by.it.milosh.service;
 
+import by.it.milosh.pojos.Course;
+import by.it.milosh.pojos.User;
 import by.it.milosh.pojos.UserCourse;
 
 import java.util.List;
@@ -10,5 +12,9 @@ import java.util.List;
 public interface UserCourseService {
 
     List<UserCourse> getAllUserCourse();
+
+    List<UserCourse> getAllUserCourseByUserId(Long user_id);
+
+    void addCourseToUser(Long user_id, Long course_id);
 
 }

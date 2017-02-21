@@ -1,6 +1,8 @@
 package by.it.milosh.daoImpl;
 
 import by.it.milosh.dao.UserCourseDao;
+import by.it.milosh.pojos.Course;
+import by.it.milosh.pojos.User;
 import by.it.milosh.pojos.UserCourse;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -37,5 +39,30 @@ public class UserCourseDaoImpl implements UserCourseDao {
         List<UserCourse> userCourses = query.list();
         tr.commit();
         return userCourses;
+    }
+
+    @Override
+    public List<UserCourse> getAllUserCourseByUserId(Long user_id) {
+        Session session = currentSession();
+        Transaction tr = session.beginTransaction();
+        String hql = "from UserCourse uc where uc.user.user_id=:user_id";
+        Query query = session.createQuery(hql);
+        query.setParameter("user_id", user_id);
+        List<UserCourse> userCourses = query.list();
+        tr.commit();
+        return userCourses;
+    }
+
+    @Override
+    public void addCourseToUser(Long user_id, Long course_id) {
+        Session session = currentSession();
+        Transaction tr = session.beginTransaction();
+        User user = (User) session.get(User.class, user_id);
+        Course course = (Course) session.get(Course.class, course_id);
+        UserCourse userCourse = new UserCourse();
+        userCourse.setUser(user);
+        userCourse.setCourse(course);
+        session.saveOrUpdate(userCourse);
+        tr.commit();
     }
 }

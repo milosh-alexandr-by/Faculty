@@ -21,4 +21,14 @@ public class UserCourseServiceImpl implements UserCourseService {
     public List<UserCourse> getAllUserCourse() {
         return userCourseDao.getAllUserCourse();
     }
+
+    @Override
+    public List<UserCourse> getAllUserCourseByUserId(Long user_id) {
+        return userCourseDao.getAllUserCourseByUserId(user_id);
+    }
+
+    @Override
+    public void addCourseToUser(Long user_id, Long course_id) {
+        userCourseDao.addCourseToUser(user_id, course_id);
+    }
 }

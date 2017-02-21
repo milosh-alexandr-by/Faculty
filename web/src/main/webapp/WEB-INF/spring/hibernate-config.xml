@@ -38,6 +38,7 @@
                 <prop key="connection.isolation">2</prop>
                 <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--<prop key="hibernate.current_session_context_class">org.hibnerate.context.ThreadLocalSessionContext</prop>-->
             </props>
         </property>
     </bean>

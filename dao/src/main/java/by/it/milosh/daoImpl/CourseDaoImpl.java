@@ -2,10 +2,9 @@ package by.it.milosh.daoImpl;
 
 import by.it.milosh.dao.CourseDao;
 import by.it.milosh.pojos.Course;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import by.it.milosh.pojos.User;
+import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -45,5 +44,15 @@ public class CourseDaoImpl implements CourseDao {
         Transaction tr = session.beginTransaction();
         session.saveOrUpdate(course);
         tr.commit();
+    }
+
+    @Override
+    public Course findCourseByName(String courseName) {
+        Session session = currentSession();
+        Criteria criteria = session.createCriteria(Course.class);
+        criteria.add(Restrictions.eq("courseName", courseName));
+        session.flush();
+//        session.close();
+        return (Course) criteria.uniqueResult();
     }
 }

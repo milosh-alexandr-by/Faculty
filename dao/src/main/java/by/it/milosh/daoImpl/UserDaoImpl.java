@@ -51,6 +51,8 @@ public class UserDaoImpl implements UserDao {
         Session session = currentSession();
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("username", username));
+        session.flush();
+//        session.close();
         return (User) criteria.uniqueResult();
     }
 
