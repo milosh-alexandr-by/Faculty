@@ -1,12 +1,10 @@
 package by.it.milosh.controllers;
 
+import by.it.milosh.pojos.Course;
 import by.it.milosh.pojos.Role;
 import by.it.milosh.pojos.User;
 import by.it.milosh.pojos.UserCourse;
-import by.it.milosh.service.RoleService;
-import by.it.milosh.service.SecurityService;
-import by.it.milosh.service.UserCourseService;
-import by.it.milosh.service.UserService;
+import by.it.milosh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,6 +40,9 @@ public class MainController {
 
     @Autowired
     private UserCourseService userCourseService;
+
+    @Autowired
+    private CourseService courseService;
 
     private String getPrincipal() {
         String userName = null;
@@ -133,12 +134,23 @@ public class MainController {
         } else if (roleName.equals("ROLE_TEACHER")) {
             modelAndView.setViewName("pages/teacher/personal");
         }
+
         Long user_id = user.getUser_id();
         List<UserCourse> userCourses = userCourseService.getAllUserCourseByUserId(user_id);
-        System.out.println(userCourses);
         modelAndView.addObject("userCourses", userCourses);
+
+        List<Course> courses = courseService.getAllCourse();
+        List<String> courseNames = new ArrayList<String>();
+        for (int i=0; i<courses.size(); i++) {
+            String cN = courses.get(i).getCourseName();
+            courseNames.add(cN);
+        }
+        modelAndView.addObject("courseNames", courseNames);
+
+        Course course = new Course();
+        modelAndView.addObject("course", course);
+
         return modelAndView;
     }
-
 
 }
